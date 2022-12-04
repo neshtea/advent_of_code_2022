@@ -39,11 +39,9 @@ let sum_of_priorities rucksacks =
 (* Part 2 *)
 type team = rucksack * rucksack * rucksack
 
-let priority_for_team ((l1, r1), (l2, r2), (l3, r3)) =
-  let s1 = List.append l1 r1 |> PS.of_list in
-  let s2 = List.append l2 r2 |> PS.of_list in
-  let s3 = List.append l3 r3 |> PS.of_list in
-  let inter = PS.inter s1 s2 |> PS.inter s3 in
+let priority_for_team (r1, r2, r3) =
+  let to_set (a, b) = List.append a b |> PS.of_list in
+  let inter = PS.inter (to_set r1) (to_set r2) |> PS.inter (to_set r3) in
   match PS.cardinal inter with
   | 1 -> PS.elements inter |> List.hd
   | _ -> raise Invalid_input

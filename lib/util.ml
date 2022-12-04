@@ -25,3 +25,12 @@ let read_file_with file f =
     | exception End_of_file -> acc
   in
   read_lines []
+
+let range start end_ =
+  let rec worker acc start end_ =
+    if start < end_ then worker (start :: acc) (start + 1) end_
+    else start :: acc
+  in
+  worker [] start end_ |> List.rev
+
+let uncurry f (a, b) = f a b

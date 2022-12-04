@@ -20,3 +20,11 @@ end
 val read_file_with : string -> (string -> 'a) -> 'a list
 (** [read_file_with file_path f] is the list of all lines in the file with f 
     applied to the line. *)
+
+val range : int -> int -> int list
+(** [range from to] returns the list of integers between from and to, including
+    both.  If from is greater than two, returns the empty list. *)
+
+val uncurry : ('a -> 'b -> 'c) -> 'a * 'b -> 'c
+(** [uncurry f] is the function f that takes a two-tuple of arguments instead
+    of two arguments *)
